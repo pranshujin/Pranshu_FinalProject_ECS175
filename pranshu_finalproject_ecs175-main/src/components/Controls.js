@@ -5,6 +5,7 @@ const Controls = ({
     onSizeChange,
     onSpeedChange,
     onWidthChange,
+    onTransparencyChange, 
 }) => (
     <>
         <label>
@@ -45,6 +46,16 @@ const Controls = ({
                 max="1"
                 step="0.1"
                 onChange={(e) => onWidthChange(+e.target.value)}
+            />
+        </label>
+        <label>
+            Water Transparency:
+            <input
+                type="range"
+                min="0.2"
+                max="1.0"
+                step="0.2"
+                onChange={(e) => onTransparencyChange(+e.target.value)} // Transparency slider
             />
         </label>
     </>

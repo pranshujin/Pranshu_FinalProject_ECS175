@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ParticleSystem from "./ParticleSystem";
 
-const Waterfall = ({ flowRate, size, particleSpeed, widthFactor }) => {
+const Waterfall = ({ flowRate, size, particleSpeed, widthFactor, transparency }) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
@@ -15,18 +15,18 @@ const Waterfall = ({ flowRate, size, particleSpeed, widthFactor }) => {
 
         const particleSystem = new ParticleSystem(gl, flowRate);
 
-        // Initialize particles with initial size and widthFactor
+        // Initialize particles with size and widthFactor
         particleSystem.initializeParticles(size, widthFactor);
 
         const render = () => {
             gl.clear(gl.COLOR_BUFFER_BIT);
-            particleSystem.updateParticles(size, particleSpeed, widthFactor);
+            particleSystem.updateParticles(size, particleSpeed, widthFactor, transparency);
             particleSystem.render();
             requestAnimationFrame(render);
         };
 
         render();
-    }, [flowRate, size, particleSpeed, widthFactor]);
+    }, [flowRate, size, particleSpeed, widthFactor, transparency]);
 
     return <canvas ref={canvasRef} width={800} height={600} />;
 };

@@ -7,7 +7,8 @@ const App = () => {
     const [flowRate, setFlowRate] = useState(500);
     const [size, setSize] = useState(5);
     const [particleSpeed, setParticleSpeed] = useState(0.01);
-    const [widthFactor, setWidthFactor] = useState(1); // Default width factor
+    const [widthFactor, setWidthFactor] = useState(1);
+    const [transparency, setTransparency] = useState(0.7); // New Transparency State
 
     return (
         <div className="App">
@@ -16,7 +17,7 @@ const App = () => {
                     <h1>Waterfall Simulation</h1>
                     <p>
                         Adjust the controls below to see how flow rate, size, speed, 
-                        and width affect the waterfall simulation.
+                        width, and transparency affect the waterfall simulation.
                     </p>
                     <p><b>Fun Fact:</b> The tallest waterfall in the world is Angel Falls in Venezuela, at over 3,200 feet!</p>
                 </div>
@@ -24,7 +25,8 @@ const App = () => {
                     flowRate={flowRate}
                     size={size}
                     particleSpeed={particleSpeed}
-                    widthFactor={widthFactor} // Pass widthFactor to Waterfall
+                    widthFactor={widthFactor}
+                    transparency={transparency} // Pass transparency to Waterfall
                 />
             </div>
             <div className="controls-panel">
@@ -32,7 +34,8 @@ const App = () => {
                     onFlowRateChange={setFlowRate}
                     onSizeChange={setSize}
                     onSpeedChange={setParticleSpeed}
-                    onWidthChange={setWidthFactor} // Handle width change
+                    onWidthChange={setWidthFactor}
+                    onTransparencyChange={setTransparency} // Add this handler
                 />
             </div>
         </div>

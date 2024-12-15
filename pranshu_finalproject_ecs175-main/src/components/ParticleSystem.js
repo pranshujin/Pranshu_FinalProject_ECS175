@@ -77,24 +77,27 @@ export default class ParticleSystem {
         }
     }
 
-    updateParticles(sizeFactor = 5, speedFactor = 2, widthFactor = 4) {
+    updateParticles(sizeFactor = 5, speedFactor = 2, widthFactor = 4, transparency = 0.7) {
         for (let i = 0; i < this.particleCount; i++) {
             // Update positions based on velocity and speedFactor
-            this.positions[i * 2] += this.velocities[i * 2] * speedFactor; // x += vx * speed
-            this.positions[i * 2 + 1] += this.velocities[i * 2 + 1] * speedFactor; // y += vy * speed
-
+            this.positions[i * 2] += this.velocities[i * 2] * speedFactor;
+            this.positions[i * 2 + 1] += this.velocities[i * 2 + 1] * speedFactor;
+    
             // Dynamically update sizes
             this.sizes[i] = Math.random() * sizeFactor + 1;
-
+    
+            // Update transparency (alpha channel)
+            this.colors[i * 4 + 3] = transparency;
+    
             // Reset particles when out of bounds
             if (this.positions[i * 2 + 1] < -1.2) {
-                this.positions[i * 2] = (Math.random() * 2 - 1) * widthFactor; // Reset x with widthFactor
-                this.positions[i * 2 + 1] = 1.1; // Reset to top
-                this.velocities[i * 2] = (Math.random() - 0.5) * 0.002; // Horizontal drift
-                this.velocities[i * 2 + 1] = -(Math.random() * 0.01 + 0.01); // Downward velocity
+                this.positions[i * 2] = (Math.random() * 2 - 1) * widthFactor;
+                this.positions[i * 2 + 1] = 1.1;
+                this.velocities[i * 2] = (Math.random() - 0.5) * 0.002;
+                this.velocities[i * 2 + 1] = -(Math.random() * 0.01 + 0.01);
             }
         }
-    }
+    }    
 
     render() {
         const gl = this.gl;
